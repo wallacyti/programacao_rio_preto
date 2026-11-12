@@ -1,0 +1,378 @@
+{
+ "doctype": "DocType",
+ "name": "Envio Programacao",
+ "module": "Programacao Rio Preto",
+ "custom": 0,
+ "engine": "InnoDB",
+ "creation": "2026-11-12 12:00:00.000000",
+ "modified": "2026-11-12 12:00:00.000000",
+ "modified_by": "Administrator",
+ "owner": "Administrator",
+ "sort_field": "data_hora_exibicao",
+ "sort_order": "DESC",
+ "states": [],
+ "fields": [
+  {
+   "fieldname": "sb_inicial",
+   "fieldtype": "Section Break",
+   "label": "Formulário inicial"
+  },
+  {
+   "fieldname": "titulo",
+   "label": "Título",
+   "hidden": 1,
+   "read_only": 1,
+   "fieldtype": "Data"
+  },
+  {
+   "fieldname": "cliente",
+   "label": "Cliente",
+   "fieldtype": "Link",
+   "options": "Cliente Programacao",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "programa",
+   "label": "Programa",
+   "fieldtype": "Link",
+   "options": "Programa TV",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "search_index": 1,
+   "in_global_search": 1
+  },
+  {
+   "fieldname": "cb_inicial",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "data_hora_exibicao",
+   "label": "Data e hora da exibição",
+   "fieldtype": "Datetime",
+   "reqd": 1,
+   "in_list_view": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "filtro_data",
+   "label": "Filtro data",
+   "fieldtype": "Date",
+   "read_only": 1,
+   "in_standard_filter": 1,
+   "search_index": 1,
+   "description": "Preenchido automaticamente com a data da exibição."
+  },
+  {
+   "fieldname": "tipo_exibicao_label",
+   "fieldtype": "Heading",
+   "label": "Tipo de exibição"
+  },
+  {
+   "fieldname": "ao_vivo",
+   "label": "AO VIVO",
+   "fieldtype": "Check",
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "reprise",
+   "label": "REPRISE",
+   "fieldtype": "Check",
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "sb_material",
+   "fieldtype": "Section Break",
+   "label": "Material"
+  },
+  {
+   "fieldname": "retranca",
+   "label": "Retranca / Nome do arquivo",
+   "fieldtype": "Small Text",
+   "in_global_search": 1,
+   "description": "Um arquivo por linha (ex.: blocos BL1, BL2)."
+  },
+  {
+   "fieldname": "link_viz",
+   "label": "Link do material no VIZ",
+   "fieldtype": "Data",
+   "options": "URL"
+  },
+  {
+   "fieldname": "observacoes",
+   "label": "Observações",
+   "fieldtype": "Small Text"
+  },
+  {
+   "fieldname": "sb_etapa",
+   "fieldtype": "Section Break",
+   "label": "Etapa"
+  },
+  {
+   "fieldname": "etapa",
+   "label": "Etapa",
+   "fieldtype": "Select",
+   "options": "Aguardando Entrega\nAguardando Reenvio\nProgramas Recebidos\nReedição\nEnviado para o VIZ One\nEnviado Programação\nExibido",
+   "default": "Aguardando Entrega",
+   "read_only": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "search_index": 1,
+   "allow_on_submit": 0,
+   "description": "Use os botões \"Mover para\" ou arraste no Kanban."
+  },
+  {
+   "fieldname": "cb_etapa",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "etapa_desde",
+   "label": "Na etapa desde",
+   "fieldtype": "Datetime",
+   "read_only": 1
+  },
+  {
+   "fieldname": "sb_recebimento",
+   "fieldtype": "Section Break",
+   "label": "Conferência do recebimento",
+   "depends_on": "eval:doc.etapa=='Programas Recebidos' || doc.recebido_com_erro"
+  },
+  {
+   "fieldname": "recebido_com_erro",
+   "label": "O programa foi recebido com algum erro?",
+   "fieldtype": "Select",
+   "options": "\nNão\nSim",
+   "in_standard_filter": 1,
+   "mandatory_depends_on": "eval:doc.etapa=='Programas Recebidos'"
+  },
+  {
+   "fieldname": "acao_tomada",
+   "label": "Qual ação foi tomada?",
+   "fieldtype": "Select",
+   "options": "\nCorrigido em Rio Preto\nDevolvido para o cliente reenviar",
+   "depends_on": "eval:doc.recebido_com_erro=='Sim'"
+  },
+  {
+   "fieldname": "obs_recebimento",
+   "label": "Observações",
+   "fieldtype": "Small Text"
+  },
+  {
+   "fieldname": "cb_recebimento",
+   "fieldtype": "Column Break",
+   "depends_on": "eval:doc.recebido_com_erro=='Sim'"
+  },
+  {
+   "fieldname": "problemas_label",
+   "fieldtype": "Heading",
+   "label": "Quais problemas foram encontrados?",
+   "depends_on": "eval:doc.recebido_com_erro=='Sim'"
+  },
+  {
+   "fieldname": "prob_video",
+   "label": "VÍDEO",
+   "fieldtype": "Check",
+   "depends_on": "eval:doc.recebido_com_erro=='Sim'"
+  },
+  {
+   "fieldname": "prob_audio",
+   "label": "ÁUDIO",
+   "fieldtype": "Check",
+   "depends_on": "eval:doc.recebido_com_erro=='Sim'"
+  },
+  {
+   "fieldname": "prob_edicao",
+   "label": "EDIÇÃO",
+   "fieldtype": "Check",
+   "depends_on": "eval:doc.recebido_com_erro=='Sim'"
+  },
+  {
+   "fieldname": "prob_claquete",
+   "label": "CLAQUETE",
+   "fieldtype": "Check",
+   "depends_on": "eval:doc.recebido_com_erro=='Sim'"
+  },
+  {
+   "fieldname": "prob_retranca",
+   "label": "RETRANCA",
+   "fieldtype": "Check",
+   "depends_on": "eval:doc.recebido_com_erro=='Sim'"
+  },
+  {
+   "fieldname": "prob_conteudo",
+   "label": "CONTEÚDO",
+   "fieldtype": "Check",
+   "depends_on": "eval:doc.recebido_com_erro=='Sim'"
+  },
+  {
+   "fieldname": "sb_master",
+   "fieldtype": "Section Break",
+   "label": "Conferência no Master",
+   "depends_on": "eval:doc.etapa=='Enviado Programação' || doc.recebido_master_com_erro"
+  },
+  {
+   "fieldname": "recebido_master_com_erro",
+   "label": "O programa foi recebido no Master com algum erro?",
+   "fieldtype": "Select",
+   "options": "\nNão\nSim",
+   "in_standard_filter": 1,
+   "mandatory_depends_on": "eval:doc.etapa=='Enviado Programação'"
+  },
+  {
+   "fieldname": "sb_exibicao",
+   "fieldtype": "Section Break",
+   "label": "Exibição",
+   "depends_on": "eval:doc.etapa=='Exibido' || doc.erro_exibicao"
+  },
+  {
+   "fieldname": "erro_exibicao",
+   "label": "Programa teve erro de exibição?",
+   "fieldtype": "Select",
+   "options": "\nNão\nSim",
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "descricao_erro_exibicao",
+   "label": "Descrição do erro",
+   "fieldtype": "Small Text",
+   "depends_on": "eval:doc.erro_exibicao=='Sim'"
+  },
+  {
+   "fieldname": "sb_historico",
+   "fieldtype": "Section Break",
+   "label": "Histórico de etapas",
+   "collapsible": 1
+  },
+  {
+   "fieldname": "historico",
+   "label": "Histórico",
+   "fieldtype": "Table",
+   "options": "Envio Programacao Etapa",
+   "read_only": 1
+  },
+  {
+   "fieldname": "sb_pipefy",
+   "fieldtype": "Section Break",
+   "label": "Origem Pipefy",
+   "collapsible": 1,
+   "depends_on": "eval:doc.pipefy_id || doc.pipefy_criado_por"
+  },
+  {
+   "fieldname": "pipefy_id",
+   "label": "ID do card no Pipefy",
+   "read_only": 1,
+   "search_index": 1,
+   "fieldtype": "Data"
+  },
+  {
+   "fieldname": "pipefy_criado_por",
+   "label": "Criado no Pipefy por",
+   "read_only": 1,
+   "fieldtype": "Data"
+  },
+  {
+   "fieldname": "cb_pipefy",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "pipefy_criado_em",
+   "label": "Criado no Pipefy em",
+   "fieldtype": "Datetime",
+   "read_only": 1
+  }
+ ],
+ "permissions": [
+  {
+   "role": "System Manager",
+   "read": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "import": 1
+  },
+  {
+   "role": "Programação RP - Gestor",
+   "read": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "import": 1
+  },
+  {
+   "role": "Programação RP - Usuário",
+   "read": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1,
+   "write": 1,
+   "create": 1
+  }
+ ],
+ "field_order": [
+  "sb_inicial",
+  "titulo",
+  "cliente",
+  "programa",
+  "cb_inicial",
+  "data_hora_exibicao",
+  "filtro_data",
+  "tipo_exibicao_label",
+  "ao_vivo",
+  "reprise",
+  "sb_material",
+  "retranca",
+  "link_viz",
+  "observacoes",
+  "sb_etapa",
+  "etapa",
+  "cb_etapa",
+  "etapa_desde",
+  "sb_recebimento",
+  "recebido_com_erro",
+  "acao_tomada",
+  "obs_recebimento",
+  "cb_recebimento",
+  "problemas_label",
+  "prob_video",
+  "prob_audio",
+  "prob_edicao",
+  "prob_claquete",
+  "prob_retranca",
+  "prob_conteudo",
+  "sb_master",
+  "recebido_master_com_erro",
+  "sb_exibicao",
+  "erro_exibicao",
+  "descricao_erro_exibicao",
+  "sb_historico",
+  "historico",
+  "sb_pipefy",
+  "pipefy_id",
+  "pipefy_criado_por",
+  "cb_pipefy",
+  "pipefy_criado_em"
+ ],
+ "autoname": "PRP-.YYYY.-.#####",
+ "naming_rule": "Expression (old style)",
+ "title_field": "titulo",
+ "show_title_field_in_link": 1,
+ "track_changes": 1,
+ "allow_import": 1,
+ "search_fields": "programa,cliente,etapa,data_hora_exibicao",
+ "description": "Card do antigo pipe PROGRAMAÇÃO_RIO PRETO: um material/VT a ser exibido."
+}

@@ -1,0 +1,77 @@
+{
+ "doctype": "DocType",
+ "name": "Envio Programacao Etapa",
+ "module": "Programacao Rio Preto",
+ "custom": 0,
+ "engine": "InnoDB",
+ "creation": "2026-11-12 12:00:00.000000",
+ "modified": "2026-11-12 12:00:00.000000",
+ "modified_by": "Administrator",
+ "owner": "Administrator",
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "fields": [
+  {
+   "fieldname": "etapa",
+   "label": "Etapa",
+   "in_list_view": 1,
+   "read_only": 1,
+   "columns": 2,
+   "fieldtype": "Data"
+  },
+  {
+   "fieldname": "entrada",
+   "label": "Entrada",
+   "fieldtype": "Datetime",
+   "in_list_view": 1,
+   "read_only": 1,
+   "columns": 2
+  },
+  {
+   "fieldname": "saida",
+   "label": "Saída",
+   "fieldtype": "Datetime",
+   "in_list_view": 1,
+   "read_only": 1,
+   "columns": 2
+  },
+  {
+   "fieldname": "duracao",
+   "label": "Tempo na etapa",
+   "fieldtype": "Duration",
+   "in_list_view": 1,
+   "read_only": 1,
+   "columns": 1
+  },
+  {
+   "fieldname": "usuario",
+   "label": "Movido por",
+   "fieldtype": "Link",
+   "options": "User",
+   "in_list_view": 1,
+   "read_only": 1,
+   "columns": 2
+  },
+  {
+   "fieldname": "resumo",
+   "label": "Registro da etapa",
+   "fieldtype": "Small Text",
+   "read_only": 1,
+   "in_list_view": 1,
+   "columns": 1,
+   "description": "Respostas da conferência no momento em que o card saiu da etapa."
+  }
+ ],
+ "permissions": [],
+ "field_order": [
+  "etapa",
+  "entrada",
+  "saida",
+  "duracao",
+  "usuario",
+  "resumo"
+ ],
+ "istable": 1,
+ "editable_grid": 0
+}

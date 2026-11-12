@@ -1,0 +1,15 @@
+[project]
+name = "programacao_rio_preto"
+authors = [{ name = "REDEVIDA" }]
+description = "Controle do envio de VTs para programação e exibição (substitui o pipe PROGRAMAÇÃO_RIO PRETO do Pipefy)"
+requires-python = ">=3.10"
+readme = "README.md"
+dynamic = ["version"]
+dependencies = []
+
+[build-system]
+requires = ["flit_core >=3.4,<4"]
+build-backend = "flit_core.buildapi"
+
+[tool.bench.frappe-dependencies]
+frappe = ">=16.0.0,<17.0.0"
